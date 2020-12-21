@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .add
+        {
+            background-color: chartreuse;
+        }
+        .edit{
+            background-color: yellow;
+        }
+        .delete
+        {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<p>Add New Product</p><br>
+<input type="text" id="new product" placeholder="New Product">
+<button class="add" type="button" onclick="add()">Add</button>
+<p>Display All Product</p><br>
+<table border="1px solid">
+    <tr align="center">
+        <td>STT</td>
+        <td>Product Name</td>
+        <td class="edit">Edit</td>
+        <td class="delete">Delete</td>
+    </tr>
+    <tbody id="list">
+    <tr>
+        <td>STT</td>
+        <td>Product Name</td>
+        <td><button class="edit" type="button" onclick="edit(index)"></button>Edit</td>
+        <td><button class="delete" type="button" onclick="del(index)"></button>Delete</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    let product = ["Iphone","Samsung","Sony","Nokia","Blackberry",];
+    showAllProduct();
+    function showAllProduct() {
+        let content = "";
+        for (let i = 0; i < product.length; i++) {
+            content +=  '  <tr>\n' +
+                '         <td>'+(i+1)+ ' </td>\n' +
+                '         <td>'+ product[i]+'</td>\n' +
+                '         <td><button class="edit" button onclick="edit('+i+')">Edit</button></td>\n' +
+                '         <td><button class="delete" button onclick="del ('+i+')">Delete</button></td>\n' +
+                '     </tr>'
+        }
+        document.getElementById("list").innerHTML = content;
+    }
+    function add() {
+        let newP = document.getElementById("new product").value;
+        product.push(newP);
+        document.getElementById("new product").value = "";
+        showAllProduct();
+    }
+    function edit(index) {
+        let newEdit = prompt("edit product ",product[index]);
+        product[index] = newEdit;
+        showAllProduct();
+    }
+    function del(index) {
+      product.splice(index,1);
+        showAllProduct();
+    }
+</script>
+</body>
+</html>
